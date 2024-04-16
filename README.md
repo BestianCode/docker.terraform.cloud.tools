@@ -4,7 +4,7 @@ This Docker image is specifically designed to support Terraform delivery pipelin
 
 ## Features
 
-- **Update Frequency**: Weekly.
+- **Update Frequency**: Monthly.
 - **Operating System**: Debian Bookworm (12) Slim.
 - **Timezone**: Europe/Berlin.
 
