@@ -5,8 +5,8 @@ ARG TARGETARCH
 RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y \
-       curl \
-       lsb-release ca-certificates gpg \
+       curl wget \
+       lsb-release gpg \
        unzip
 
 # AWS CLI
@@ -33,6 +33,10 @@ RUN curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/ke
     && apt-get update \
     && apt-get install -y terraform \
     && terraform --version
+
+# TZ
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*
