@@ -16,6 +16,7 @@ The image comes pre-packaged with a set of tools that are commonly used in Terra
 - `terraform`
 - `AWS CLI`
 - `GCP CLI + gke-gcloud-auth-plugin`
+- `Azure CLI`
 
 ## Usage
 
