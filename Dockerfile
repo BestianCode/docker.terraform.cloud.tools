@@ -6,8 +6,13 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y \
        curl wget \
-       lsb-release gpg \
-       unzip
+       jq \
+       gpg \
+       unzip openssh-client ca-certificates libssl3 lsb-release
+
+# Azure CLI
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+RUN az version
 
 # AWS CLI
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
@@ -25,10 +30,6 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -
     && echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends google-cloud-cli google-cloud-cli-gke-gcloud-auth-plugin
-
-# Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-RUN az version
 
 # Terraform
 RUN curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg \
