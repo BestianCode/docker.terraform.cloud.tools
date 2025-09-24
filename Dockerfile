@@ -27,8 +27,8 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -
     && apt-get install -y --no-install-recommends google-cloud-cli google-cloud-cli-gke-gcloud-auth-plugin
 
 # Azure CLI
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
-    && az version
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+RUN az version
 
 # Terraform
 RUN curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg \
